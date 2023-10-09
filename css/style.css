@@ -1,8 +1,13 @@
 body {
     background-color: #080025;
     color: white;
+    margin: 2em 4em;
 }
 
 h1 {
     text-align: center;
+}
+
+section {
+    padding: auto;
 }
