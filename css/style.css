@@ -2,6 +2,10 @@ body {
     background-color: #080025;
     color: white;
     margin: 2em 4em;
+    font-family: 'Roboto', 'Times New Roman', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -9,5 +13,13 @@ h1 {
 }
 
 section {
-    padding: auto;
+    padding: 2em;
+}
+
+.container {
+    background-color: cornflowerblue;
+    padding: 1em 4em;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
 }
