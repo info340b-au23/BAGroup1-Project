@@ -34,3 +34,7 @@ p {
     display: flex;
     flex-wrap: wrap;
 }
+
+#features {
+    padding-top: 0.5em;
+}
