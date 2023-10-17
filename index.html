@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta name="author" content="Adam, Connie, Troy, Shelly">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title>E-Flashcard Draft</title>
+    <title>StudySpark Draft</title>
 </head>
-<body class="container">
-    
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">StudySpark</a>
+            <!-- starting navbar toggle setup -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navtoggle">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/decks.html">Decks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login.html">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="d-flex flex-column text-center align-items-center justify-content-center vh-100">
+        <div>
+            <h1 class="display-1 fw-bold">Welcome to StudySpark!</h1>
+            <p class="lead">Your ultimate e-flashcard learning platform.</p>
+        </div>
+    </main>
+
 </body>
+
 </html>
