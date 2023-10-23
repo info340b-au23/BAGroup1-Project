@@ -65,7 +65,8 @@ W3Schools.com: https://www.w3schools.com/howto/howto_css_flip_card.asp */
     transform: rotateY(180deg);
 }
 
-.vocab-card-front, .vocab-card-back {
+.vocab-card-front,
+.vocab-card-back {
     position: absolute;
     width: inherit;
     height: inherit;
@@ -88,11 +89,6 @@ W3Schools.com: https://www.w3schools.com/howto/howto_css_flip_card.asp */
 }
 
 
-.instructions {
-    font-size: 35px;
-    text-align: center;
-}
-
 .user-info {
     margin-top: 50px;
     text-align: center;
@@ -113,4 +109,132 @@ footer button {
     position: fixed;
     right: 10px;
     bottom: 10px;
+}
+
+main.study-set {
+    color: black;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main h1.deck-title {
+    font-size: 18px;
+    color: white
+}
+
+.flashcard-container {
+    width: 60vw;
+    height: 65vh;
+    perspective: 1000px;
+    /* margin: auto; */
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+}
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.flashcard-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    backface-visibility: hidden;
+}
+
+.front-content,
+.back-content {
+    font-size: 32px;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flashcard.flip {
+    transform: rotateY(180deg);
+}
+
+.shuffle-button {
+    font-size: 14px;
+    background-color: #774bd1;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shuffle-button:hover {
+    background-color: #4b2e83;
+}
+
+.incorrect-button,
+.correct-button {
+    font-size: 24px;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+}
+
+.incorrect-button {
+    left: 0;
+    background-color: #ffcccc;
+}
+
+.incorrect-button:hover {
+    background-color: #ff9999;
+}
+
+.correct-button {
+    right: 0;
+    background-color: #ccffcc;
+}
+
+.correct-button:hover {
+    background-color: #9ef79e;
+}
+
+.arrow {
+    margin: 0 10px;
+}
+
+.timer-container {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-50%);
+}
+
+#timer {
+    font-size: 44px;
+    font-weight: bold;
 }
