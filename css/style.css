@@ -20,3 +20,13 @@ body {
 .btn-container a {
     margin: 0 0.5rem;
 }
+
+.card:hover {
+    background-color: #774bd1;
+    transition: 0.3s;
+}
+
+.card-body:hover {
+    color: white;
+    transition: 0.3s;
+}
