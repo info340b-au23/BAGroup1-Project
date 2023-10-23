@@ -30,3 +30,30 @@ body {
     color: white;
     transition: 0.3s;
 }
+
+.instructions {
+    font-size: 35px;
+    text-align: center;
+}
+
+.user-info {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.link-decor {
+    text-decoration: none;
+    color: #774bd1;
+}
+
+.link-decor:hover {
+    color: white;
+    transition: 0.3s;
+}
+
+footer button {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
