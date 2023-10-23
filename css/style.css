@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-.move-up {
+#recenter {
     margin-top: -5rem;
 }
 
@@ -18,18 +18,75 @@ body {
 }
 
 .btn-container a {
-    margin: 0 0.5rem;
+    margin: 0 1rem;
 }
 
-.card:hover {
+.deck:hover {
     background-color: #774bd1;
     transition: 0.3s;
 }
 
-.card-body:hover {
+.deck-body:hover {
     color: white;
     transition: 0.3s;
 }
+
+/* (Adam Skoglund) Animations of following .vocab-card code was revised from
+W3Schools.com: https://www.w3schools.com/howto/howto_css_flip_card.asp */
+.vocab-card {
+    width: 10rem;
+    height: 15rem;
+    perspective: 1000px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .vocab-card {
+        width: 8rem;
+        height: 12rem;
+    }
+}
+
+.vocab-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    align-items: center;
+    justify-content: center;
+}
+
+.vocab-card:hover .vocab-card-inner {
+    transform: rotateY(180deg);
+}
+
+.vocab-card-front, .vocab-card-back {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.vocab-card-front {
+    font-size: 20px;
+}
+
+.vocab-card-back {
+    transform: rotateY(180deg);
+}
+
 
 .instructions {
     font-size: 35px;
