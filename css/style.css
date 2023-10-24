@@ -127,37 +127,24 @@ main h1.deck-title {
     color: white
 }
 
-.flashcard-container {
-    width: 60vw;
-    height: 65vh;
+/* reference https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_html_click */
+.flashcard {
+    width: 60vw; 
+    height: 65vh; 
     perspective: 1000px;
-    /* margin: auto; */
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     margin-top: 2rem; 
     margin-bottom: 6rem;
 }
 
-.flashcard {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-}
-
 .flashcard-inner {
+    position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-    position: relative;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-}
-
-.flashcard:hover .flashcard-inner {
-    transform: rotateY(180deg);
 }
 
 .flashcard-front, .flashcard-back {
@@ -177,6 +164,10 @@ main h1.deck-title {
 }
 
 .flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flipped .flashcard-inner {
     transform: rotateY(180deg);
 }
 
