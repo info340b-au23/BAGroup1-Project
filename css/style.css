@@ -117,7 +117,7 @@ main.study-set {
     height: 100vh;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
 }
@@ -132,45 +132,51 @@ main h1.deck-title {
     height: 65vh;
     perspective: 1000px;
     /* margin: auto; */
-    margin-top: 2rem;
+    margin-top: 2rem; 
     margin-bottom: 6rem;
 }
 
 .flashcard {
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
     transition: transform 0.8s;
 }
 
-.flashcard-content {
+.flashcard-inner {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     backface-visibility: hidden;
+    position: relative;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
-.front-content,
-.back-content {
-    font-size: 32px;
-    background-color: #ffffff;
+.flashcard:hover .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
     width: 100%;
     height: 100%;
+    backface-visibility: hidden;
+    font-size: 32px;
+    background-color: #ffffff;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
-.flashcard.flip {
+.flashcard-back {
     transform: rotateY(180deg);
 }
 
