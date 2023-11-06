@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Adam, Connie, Troy, Shelly" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="icon" type="image/x-icon" href="img/studyicon.png" />
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<meta
+			name="description"
+			content="Login page for the innovative flashcard study app: StudySpark"
+		/>
+		<title>Login</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Adam, Connie, Troy, Shelly">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="img/studyicon.png">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <meta name="description" content="Login page for the innovative flashcard study app: StudySpark">
-    <title>Login</title>
-</head>
+	<body class="d-flex flex-column vh-100">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">StudySpark</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navtoggle"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-<body class="d-flex flex-column vh-100">
+				<div class="collapse navbar-collapse" id="navtoggle">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="decks.html">Decks</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="login.html">Log In</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="sign_up.html">Sign Up</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<main>
+			<div class="container mt-5">
+				<div class="text-center align-items-center">
+					<h1 class="display-3 fw-bold">Log In to StudySpark:</h1>
+					<h3 class="text-center lead">
+						Don't have an account? Register
+						<a class="link-decor" href="sign_up.html">here</a>:
+					</h3>
+				</div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">StudySpark</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggle">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+				<form>
+					<div class="form-group">
+						<label class="col-form-label" for="username"
+							>Username:
+						</label>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Enter username"
+							name="username"
+							required
+						/>
+					</div>
 
-            <div class="collapse navbar-collapse" id="navtoggle">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="decks.html">Decks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sign_up.html">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <div class="container mt-5">
-            <div class="text-center align-items-center">
-                <h1 class="display-3 fw-bold"> Log In to StudySpark: </h1>
-                <h3 class="text-center lead"> Don't have an account? Register <a class="link-decor"
-                        href="sign_up.html">here</a>: </h3>
-            </div>
+					<div class="form-group">
+						<label class="col-form-label" for="password"
+							>Password:
+						</label>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Enter your password"
+							name="password"
+							required
+						/>
+					</div>
 
-            <form>
-                <div class="form-group">
-                    <label class="col-form-label" for="username">Username: </label>
-                    <input type="text" class="form-control" placeholder="Enter username" name="username" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label" for="password">Password: </label>
-                    <input type="text" class="form-control" placeholder="Enter your password" name="password" required>
-                </div>
-
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">Keep me signed in</label>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary mt-3">Login</button>
-                </div>
-            </form>
-        </div>
-    </main>
-    <footer>
-        <button type="button" class="btn btn-primary mt-5">Toggle Theme</button>
-    </footer>
-</body>
-
+					<div class="form-check mt-3">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value=""
+							id="flexCheckDefault"
+						/>
+						<label class="form-check-label" for="flexCheckDefault"
+							>Keep me signed in</label
+						>
+					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary mt-3">
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer>
+			<button type="button" class="btn btn-primary mt-5">
+				Toggle Theme
+			</button>
+		</footer>
+	</body>
 </html>
