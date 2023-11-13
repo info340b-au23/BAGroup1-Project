@@ -1,37 +1,32 @@
-export default function Navbar(props) {
+export default function Navbar({ handleButtonClick }) {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div className="container">
-				<a className="navbar-brand" href="index.html">
-					StudySpark
-				</a>
 				<button
-					className="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navToggle"
+					className="navbar-brand btn btn-link"
+					onClick={() => handleButtonClick("index")}
 				>
-					<span className="navbar-toggler-icon"></span>
+					StudySpark
 				</button>
-
-				<div className="collapse navbar-collapse" id="navToggle">
-					<ul className="navbar-nav me-auto">
-						<li className="nav-item">
-							<a className="nav-link" href="decks.html">
-								Decks
-							</a>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link" href="login.html">
-								Log In
-							</a>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link" href="sign_up.html">
-								Sign Up
-							</a>
-						</li>
-					</ul>
+				<div className="navbar-nav ml-auto">
+					<button
+						className="nav-link btn btn-link"
+						onClick={() => handleButtonClick("decks")}
+					>
+						Decks
+					</button>
+					<button
+						className="nav-link btn btn-link"
+						onClick={() => handleButtonClick("login")}
+					>
+						Log In
+					</button>
+					<button
+						className="nav-link btn btn-link"
+						onClick={() => handleButtonClick("sign_up")}
+					>
+						Sign Up
+					</button>
 				</div>
 			</div>
 		</nav>

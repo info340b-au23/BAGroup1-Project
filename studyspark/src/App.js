@@ -1,9 +1,9 @@
-import Navbar from './Navbar';
+import Navbar from "./Navbar";
 
 export default function App() {
-  return (
-    <div className="container-fluid d-flex flex-column">
-        <Navbar />
-    </div>
-  );
+	return (
+		<body class="d-flex flex-column vh-100">
+            <Navbar />
+		</body>
+	);
 }
