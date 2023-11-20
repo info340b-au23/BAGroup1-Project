@@ -1,0 +1,252 @@
+body {
+    background-color: #36393e;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #774bd1;
+    border-color: #774bd1;
+
+}
+
+.btn-primary:hover {
+    background-color: #4b2e83;
+    border-color: #4b2e83;
+}
+
+.btn-container a {
+    margin: 0 1rem;
+}
+
+.deck:hover {
+    background-color: #774bd1;
+    transition: 0.3s;
+}
+
+.deck-body:hover {
+    color: white;
+    transition: 0.3s;
+}
+
+/* (Adam Skoglund) Animations of following .vocab-card code was revised from
+W3Schools.com: https://www.w3schools.com/howto/howto_css_flip_card.asp */
+.vocab-card {
+    width: 10rem;
+    height: 15rem;
+    perspective: 1000px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vocab-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    align-items: center;
+    justify-content: center;
+}
+
+.vocab-card:hover .vocab-card-inner {
+    transform: rotateY(180deg);
+}
+
+.vocab-card-front,
+.vocab-card-back {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.vocab-card-front {
+    font-size: 20px;
+}
+
+.vocab-card-back {
+    transform: rotateY(180deg);
+}
+
+
+.user-info {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.link-decor {
+    text-decoration: none;
+    color: #774bd1;
+}
+
+.link-decor:hover {
+    color: white;
+    transition: 0.3s;
+}
+
+footer button {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+main.study-set {
+    color: black;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+
+main h1.deck-title {
+    font-size: 18px;
+    color: white
+}
+
+/* reference https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_html_click */
+.flashcard {
+    width: 60vw; 
+    height: 65vh; 
+    perspective: 1000px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    margin-top: 2rem; 
+    margin-bottom: 6rem;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    font-size: 32px;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.shuffle-button {
+    font-size: 14px;
+    background-color: #774bd1;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shuffle-button:hover {
+    background-color: #4b2e83;
+}
+
+.incorrect-button,
+.correct-button {
+    font-size: 24px;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+}
+
+.incorrect-button {
+    left: 0;
+    background-color: #ffcccc;
+}
+
+.incorrect-button:hover {
+    background-color: #ff9999;
+}
+
+.correct-button {
+    right: 0;
+    background-color: #ccffcc;
+}
+
+.correct-button:hover {
+    background-color: #9ef79e;
+}
+
+.arrow {
+    margin: 0 10px;
+}
+
+.timer-container {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-50%);
+}
+
+#timer {
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.title {
+    background-image: url("../public/img/studyspace.jpg");
+    background-size: cover;
+    background-position: cover;
+}
+
+footer p {
+    display: block;
+    position: fixed;
+    left: 10px;
+    bottom: 5px;
+    color: gray;
+}
+
+@media (max-width: 768px) {
+    .vocab-card {
+        width: 8rem;
+        height: 12rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}
