@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomePage from "./HomePage";
+import { CreateFlashcard } from "./CreateFlashcard";
 
 export default function App(props) {
 	const location = useLocation();
