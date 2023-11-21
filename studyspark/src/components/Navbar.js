@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
@@ -8,7 +9,7 @@ export default function Navbar() {
 					<img
 						src="/img/studyicon.png"
 						alt="The logo of StudySpark"
-						class="nav-icon pe-2"
+						className="nav-icon pe-2"
 					/>
 					StudySpark
 				</NavLink>

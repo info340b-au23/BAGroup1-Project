@@ -1,4 +1,4 @@
-body {
+#root {
     background-color: #36393e;
     color: white;
 }
@@ -6,7 +6,6 @@ body {
 .btn-primary {
     background-color: #774bd1;
     border-color: #774bd1;
-
 }
 
 .btn-primary:hover {
