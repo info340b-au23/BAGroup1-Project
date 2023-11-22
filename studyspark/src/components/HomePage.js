@@ -16,9 +16,6 @@ export default function HomePage() {
 				<p>
 					<em>Image from wallpaperaccess.com</em>
 				</p>
-				<button type="button" className="btn btn-primary mt-5">
-					Toggle Theme
-				</button>
 			</footer>
 		</>
 	);

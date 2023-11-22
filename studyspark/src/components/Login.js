@@ -5,17 +5,19 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	// const [hasSubmit, setSubmit] = useState(false);
 
 	const formNavigate = useNavigate();
 
-	function HandleSubmit() {
+	function handleSubmit() {
+		// setSubmit(true);
 		formNavigate("/decks");
 	}
 
 	return (
 		<div className="container mt-5">
 			<div className="text-center align-items-center login-title">
-				<h1 className="display-3 fw-bold">Log In to StudySpark:</h1>
+				<h1 className="display-3 fw-bold">Log in to StudySpark:</h1>
 				<h3 className="text-center lead">
 					Don't have an account? Register{" "}
 					<Link className="link-decor" to="/Signup">
@@ -23,7 +25,7 @@ export default function Login() {
 					</Link>
 				</h3>
 			</div>
-			<form className="loginForm" onSubmit={HandleSubmit}>
+			<form className="loginForm" onSubmit={handleSubmit}>
 				<div className="form-group">
 					<label className="col-form-label" htmlFor="username">
 						Username:
