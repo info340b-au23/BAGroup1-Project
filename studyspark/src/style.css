@@ -273,6 +273,10 @@ footer p {
     color: gray;
 }
 
+.scroll {
+    overflow-y:auto;
+}
+
 @media (max-width: 768px) {
     .vocab-card {
         width: 8rem;
@@ -281,5 +285,16 @@ footer p {
 
     footer p {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        background-image: url("../public/img/studyspace-sm.png");
+    }
+    
+    .vocab-card {
+        width: 6rem;
+        height: 10rem;
     }
 }

@@ -28,7 +28,7 @@ export default function Decks(props) {
 	});
 
 	return (
-		<main className="container d-flex flex-column text-center flex-grow-1 mt-5">
+		<main className="container d-flex flex-column text-center flex-grow-1 mt-5 scroll" >
 			<div>
 				<h1 className="display-3 fw-bold mt-5">Your Decks</h1>
 			</div>
