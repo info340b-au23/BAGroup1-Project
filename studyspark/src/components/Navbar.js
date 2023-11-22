@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import LoginIcon from "@mui/icons-material/Login";
 
 export default function Navbar() {
 	return (
@@ -26,11 +28,17 @@ export default function Navbar() {
 					<ul className="navbar-nav ms-auto align-items-center">
 						<li className="nav-item mx-2">
 							<NavLink className="nav-link" to="/decks">
+								<span className="px-1">
+									<DashboardCustomizeIcon />
+								</span>
 								Decks
 							</NavLink>
 						</li>
 						<li className="nav-item mx-2">
 							<NavLink className="nav-link" to="/login">
+								<span className="px-1">
+									<LoginIcon />
+								</span>
 								Login / Signup
 							</NavLink>
 						</li>
