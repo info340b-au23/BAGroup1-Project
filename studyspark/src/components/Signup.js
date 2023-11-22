@@ -1,7 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+	const formNavigate = useNavigate();
+	function HandleSubmit() {
+		formNavigate("/decks");
+	}
+
 	return (
 		<div className="container mt-5">
 			<div className="text-left align-items-center login-title">
@@ -12,21 +17,22 @@ export default function Signup() {
 				<h3 className="text-center lead">
 					{" "}
 					Already have an account? Login{" "}
-                    <Link to="/Login">here</Link>
+					<Link className="link-decor" to="/Login">
+						here
+					</Link>
 					:{" "}
 				</h3>
 			</div>
-			<form>
+			<form onSubmit={HandleSubmit}>
 				<div className="form-group">
 					<label className="col-form-label" htmlFor="email">
 						Email Address:
 					</label>
 					<input
-						type="text"
+						type="email"
 						className="form-control"
 						placeholder="Enter Email"
-						name="email"
-						required=""
+						required
 					/>
 				</div>
 				<div className="form-group">
@@ -37,8 +43,8 @@ export default function Signup() {
 						type="text"
 						className="form-control"
 						placeholder="Enter username"
-						name="username"
-						required=""
+						minLength="6"
+						required
 					/>
 				</div>
 				<div className="form-group">
@@ -49,8 +55,8 @@ export default function Signup() {
 						type="text"
 						className="form-control"
 						placeholder="Enter a password"
-						name="password"
-						required=""
+						minLength="6"
+						required
 					/>
 				</div>
 				<div className="form-check mt-3">
@@ -59,7 +65,7 @@ export default function Signup() {
 						type="checkbox"
 						defaultValue=""
 						id="flexCheckDefault"
-						required=""
+						required
 					/>
 					<label
 						className="form-check-label"

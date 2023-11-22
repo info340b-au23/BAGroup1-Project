@@ -31,7 +31,7 @@ export default function Navbar() {
 						</li>
 						<li className="nav-item mx-2">
 							<NavLink className="nav-link" to="/login">
-								Log In/Sign Up
+								Login / Sign Up
 							</NavLink>
 						</li>
 					</ul>
