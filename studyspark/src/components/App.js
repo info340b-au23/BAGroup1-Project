@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Decks from "./DecksView";
 import userDecks from "../data/decks.json";
+import Login from "./Login";
+import Signup from "./Signup";
 
 export default function App(props) {
 	const location = useLocation();
@@ -18,6 +20,8 @@ export default function App(props) {
 			<Routes>
 				<Route index element={<HomePage />} />
                 <Route path="decks" element={<Decks decks={userDecks} />} />
+				<Route path="login" element={<Login />} />
+				<Route path="Signup" element={<Signup />} />
 			</Routes>
 		</div>
 	);

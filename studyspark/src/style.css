@@ -116,7 +116,11 @@ main.study-set {
 
 main h1.deck-title {
     font-size: 18px;
-    color: white
+    color: white;
+}
+
+.login-title {
+    margin-top: 50px;
 }
 
 /* reference https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_html_click */
