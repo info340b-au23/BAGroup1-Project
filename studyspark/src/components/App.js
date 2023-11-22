@@ -3,8 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Decks from "./DecksView";
-import userDecks from "./decks.json";
-import { CreateFlashcard } from "./CreateFlashcard";
+import userDecks from "../data/decks.json";
 
 export default function App(props) {
 	const location = useLocation();

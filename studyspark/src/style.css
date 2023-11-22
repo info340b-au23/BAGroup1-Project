@@ -1,6 +1,7 @@
 #root {
     background-color: #36393e;
     color: white;
+    overflow: hidden;
 }
 
 .btn-primary {
@@ -231,7 +232,33 @@ main h1.deck-title {
 .title {
     background-image: url("../public/img/studyspace.jpg");
     background-size: cover;
-    background-position: cover;
+    background-position: center;
+}
+
+.home-text {
+    margin-top: 6.5rem;
+}
+
+.home-text h1 {
+    animation: slideInFromTop 1s ease-in-out;
+}
+
+.home-text p {
+    animation: slideInFromTop 1s ease-in-out;
+}
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+
+.text-purple {
+    color: #774bd1;
+    -webkit-text-stroke: 1px white;
 }
 
 footer p {

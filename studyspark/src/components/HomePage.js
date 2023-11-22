@@ -3,16 +3,18 @@ import React from "react";
 export default function HomePage() {
 	return (
 		<>
-			<main className="container d-flex flex-column text-center align-items-center justify-content-center flex-grow-1">
-                <h1 className="display-1 fw-bold">Welcome to StudySpark!</h1>
-                <p className="lead fw-bold">
-                    Your ultimate e-flashcard learning platform.
-                </p>
+			<main className="home-text container d-flex flex-column text-center align-items-center flex-grow-1">
+				<h1 className="display-1 fw-bold">
+					Welcome to <span className="text-purple">StudySpark!</span>
+				</h1>
+				<p className="lead fw-bold">
+					The ultimate e-flashcard learning platform.
+				</p>
 			</main>
 
 			<footer>
 				<p>
-					<em>Image credit: wallpaperaccess.com</em>
+					<em>Image from wallpaperaccess.com</em>
 				</p>
 				<button type="button" className="btn btn-primary mt-5">
 					Toggle Theme
