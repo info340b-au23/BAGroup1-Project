@@ -6,6 +6,7 @@ import Decks from "./DecksView";
 import userDecks from "../data/decks.json";
 import Login from "./Login";
 import Signup from "./Signup";
+import CreateFlashcard from "./CreateFlashcard";
 
 export default function App(props) {
 	const location = useLocation();
