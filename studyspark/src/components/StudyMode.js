@@ -3,6 +3,11 @@ import CardsView from "./CardsView";
 
 
 export default function StudyMode() {
+    const toggleFlip = () => {
+        var flashcard = document.querySelector(".flashcard");
+        flashcard.classList.toggle("flipped");
+    };
+    
     return (
         <body class="d-flex flex-column vh-100">
             <time id="timer" class="timer-container">

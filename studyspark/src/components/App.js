@@ -25,7 +25,7 @@ export default function App(props) {
 				<Route path="login" element={<Login />} />
 				<Route path="Signup" element={<Signup />} />
 				<Route path="/cards" element={<CardsView />} />
-				<Route path="StudyMode" element={<StudyMode />} />
+				<Route path="/StudyMode" element={<StudyMode />} />
 			</Routes>
 		</div>
 	);
