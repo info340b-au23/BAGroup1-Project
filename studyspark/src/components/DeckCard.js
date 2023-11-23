@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import CardsView from "./CardsView";
+
 
 export default function DeckCard({
 	title,
@@ -13,7 +16,7 @@ export default function DeckCard({
 				<div className="card-body deck-body">
 					<div className="row">
 						<div className="col-sm">
-							<Link to={`/deck-${title}`}>
+							<Link to="/cards">
 								<h2 className="card-title">{title}</h2>
 							</Link>
 							<p className="card-text">{description}</p>
@@ -28,6 +31,7 @@ export default function DeckCard({
 								</button>
 							</div>
 						)}
+
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Flashcard from './Flashcard';
 
 export default function Deck({ flashcards }) {
   return (

@@ -6,7 +6,7 @@ import Decks from "./DecksView";
 import userDecks from "../data/decks.json";
 import Login from "./Login";
 import Signup from "./Signup";
-import CreateFlashcard from "./CreateFlashcard";
+import CardsView from "./CardsView";
 
 export default function App(props) {
 	const location = useLocation();
@@ -23,6 +23,7 @@ export default function App(props) {
                 <Route path="decks" element={<Decks decks={userDecks} />} />
 				<Route path="login" element={<Login />} />
 				<Route path="Signup" element={<Signup />} />
+				<Route path="/cards" element={<CardsView />} />
 			</Routes>
 		</div>
 	);
