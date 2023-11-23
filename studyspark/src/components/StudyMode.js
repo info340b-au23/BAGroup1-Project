@@ -29,13 +29,6 @@ export default function StudyMode() {
                     </div>
                 </div>
 
-                <script>
-                    function toggleFlip() {
-                        var flashcard = document.querySelector(".flashcard");
-                        flashcard.classList.toggle("flipped");
-                    }
-                </script>
-
                 <button class="shuffle-button">Shuffle</button>
             </main>
         </body>
