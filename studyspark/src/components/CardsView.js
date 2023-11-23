@@ -1,5 +1,8 @@
 import React from "react";
 import DeckCard from "./DeckCard";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import StudyMode from "./StudyMode";
 
 export default function CardsView() {
     return (

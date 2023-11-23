@@ -7,6 +7,7 @@ import userDecks from "../data/decks.json";
 import Login from "./Login";
 import Signup from "./Signup";
 import CardsView from "./CardsView";
+import StudyMode from "./StudyMode";
 
 export default function App(props) {
 	const location = useLocation();
@@ -24,6 +25,7 @@ export default function App(props) {
 				<Route path="login" element={<Login />} />
 				<Route path="Signup" element={<Signup />} />
 				<Route path="/cards" element={<CardsView />} />
+				<Route path="StudyMode" element={<StudyMode />} />
 			</Routes>
 		</div>
 	);
