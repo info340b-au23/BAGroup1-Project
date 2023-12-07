@@ -9,22 +9,20 @@ import Signup from "./Signup";
 import CardsView from "./CardsView";
 
 export default function App(props) {
-	const location = useLocation();
+  const location = useLocation();
 
-	const isHomePage = location.pathname === "/";
+  const isHomePage = location.pathname === "/";
 
-	return (
-		<div
-			className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}
-		>
-			<Navbar />
-			<Routes>
-				<Route index element={<HomePage />} />
-                <Route path="decks" element={<Decks decks={userDecks} />} />
-				<Route path="login" element={<Login />} />
-				<Route path="Signup" element={<Signup />} />
-				<Route path="/cards" element={<CardsView />} />
-			</Routes>
-		</div>
-	);
+  return (
+    <div className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}>
+      <Navbar />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="decks" element={<Decks decks={userDecks} />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="cards" element={<CardsView />} />
+      </Routes>
+    </div>
+  );
 }
