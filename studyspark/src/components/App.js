@@ -1,5 +1,6 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation, Navigate, useNavigate, Outlet } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Decks from "./DecksView";
@@ -8,44 +9,57 @@ import Login from "./Login";
 import Signup from "./Signup";
 import CardsView from "./CardsView";
 import StudyMode from "./StudyMode";
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from "firebase/database";
-import CreateFlashcard from "./CreateFlashcard";
-
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDMJJ_WEPBr3N-d8za6wmzH-Je04E6QJdQ",
-  authDomain: "studyspark-97b92.firebaseapp.com",
-  projectId: "studyspark-97b92",
-  storageBucket: "studyspark-97b92.appspot.com",
-  messagingSenderId: "337626103078",
-  appId: "1:337626103078:web:f6504517c82ed9843355e7",
-  databaseURL: "https://studyspark-97b92-default-rtdb.firebaseio.com"
-};
-
-initializeApp(firebaseConfig);
-
 
 export default function App(props) {
+  const [currentUser, setCurrentUser] = useState(null); // ! Need to set user functionality
   const location = useLocation();
-
   const isHomePage = location.pathname === "/";
+  const navigateTo = useNavigate();
+  
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        user.userName = user.displayName;
+        user.userId = user.uid;
+        setCurrentUser(user);
+      }
+      else {
+        setCurrentUser(null);
+      }
+    })
+  }, [])
+
+  const loginUser = (userObj) => {
+    setCurrentUser(userObj);
+    
+    if(userObj.userId !== null){
+      navigateTo('/decks'); 
+    }
+  }
 
   return (
-    <div
-      className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}
-    >
-      <Navbar />
+    <div className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}>
+      <Navbar currentUser={currentUser}/>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="decks" element={<Decks decks={userDecks} />} />
-        <Route path="login" element={<Login />} />
-        <Route path="Signup" element={<Signup />} />
-        <Route path="/cards" element={<CardsView />} />
-        <Route path="/StudyMode" element={<StudyMode />} />
-        <Route path="create-flashcard" element={<CreateFlashcard />} />
+        <Route path="login" element={<Login currentUser={currentUser} loginCallback={loginUser}/>} />
+        <Route path="signup" element={<Signup />} />
+        {/* Protected Routes */}
+        <Route element={<ProtectedPage currentUser={currentUser} />}>
+          <Route path="decks" element={<Decks decks={userDecks} />} />
+          <Route path="cards" element={<CardsView />} />
+          <Route path="studymode" element={<StudyMode />} />
+        </Route>
       </Routes>
     </div>
   );
+}
+
+function ProtectedPage(props) {
+  if (props.currentUser === null) { // TODO change to .userId or whatever we use for users
+    return <Navigate to="/login" />;
+  } else {
+    return <Outlet />;
+  }
 }
