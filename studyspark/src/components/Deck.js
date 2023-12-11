@@ -1,4 +1,7 @@
 import React from 'react';
+import { getDatabase, ref } from 'firebase/database';
+
+
 
 export default function Deck({ flashcards }) {
   return (
