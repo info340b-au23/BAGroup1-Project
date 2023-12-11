@@ -10,6 +10,7 @@ import CardsView from "./CardsView";
 import StudyMode from "./StudyMode";
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from "firebase/database";
+import CreateFlashcard from "./CreateFlashcard";
 
 
 // Your web app's Firebase configuration
@@ -43,6 +44,7 @@ export default function App(props) {
         <Route path="Signup" element={<Signup />} />
         <Route path="/cards" element={<CardsView />} />
         <Route path="/StudyMode" element={<StudyMode />} />
+        <Route path="create-flashcard" element={<CreateFlashcard />} />
       </Routes>
     </div>
   );

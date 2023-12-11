@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StudyMode from "./StudyMode";
-import addFlashcard from "./CreateFlashcard";
-import DeckCard from "./DeckCard"; 
+import DeckCard from "./DeckCard";
 import { getDatabase, ref } from 'firebase/database';
+import Flashcard from "./Flashcard";
+import CreateFlashcard from "./CreateFlashcard";
+
 
 // // ref firebase db
 // const db = getDatabase();
@@ -12,26 +14,67 @@ import { getDatabase, ref } from 'firebase/database';
 // // const deck = ref(db, "users/" + user + "/" + "decks") 
 
 
-export default function CardsView() {
-  // Assume cardsData is an array containing user's saved cards
-  const [cardsData, setCardsData] = useState([]);
+export default function CardsView(props) {
+
+  const [showForm, setShowForm] = useState(false);
+  const [cards, setCards] = useState(props.cards || []);
+  const [editMode, setEditMode] = useState(false);
+
+  function handleAddCard() {
+    setShowForm(true);
+  }
+
+  function handleCreateFlashcard(front, back) {
+    const newCard = { frontVal: front, backVal: back };
+    setCards((prevCards) => [...prevCards, newCard]);
+  }
+
+  function handleRemoveCard(index) {
+    setCards((prevCards) => {
+      const updatedCards = [...prevCards];
+      updatedCards.splice(index, 1);
+      return updatedCards;
+    });
+  }
+
+  function handleCloseForm() {
+    // setShowForm(false);
+  }
+
+  function handleEdit() {
+    setEditMode(!editMode);
+  }
+
+
+  const cardsDeck = cards.map((card, index) => (
+    <Flashcard
+      key={index}
+      frontVal={card.frontVal}
+      backVal={card.backVal}
+      showForm={showForm}
+      handleRemoveCard={() => handleRemoveCard(index)}
+      editable={editMode}
+    />
+  ));
 
   return (
-    <div>
-      <main className="container d-flex flex-column text-center flex-grow-1">
+    <div className="scroll">
+      <main className="container d-flex flex-column text-center flex-grow-1 mt-5 " >
         <div>
-          <br></br><br></br><br></br><br></br>
           <h1 className="display-3 fw-bold">Your Deck</h1>
           <div className="btn-container d-flex justify-content-center">
-            <a href="decks/deck-edit.html" className="btn btn-primary">
-              Edit Deck
-            </a>
+          <button
+              className="btn btn-primary"
+              onClick={handleEdit} 
+            >
+              {editMode ? 'Cancel' : 'Edit Deck'}
+            </button>
             <a href="study-set.html" className="btn btn-primary">
               Study Mode
             </a>
-            <Link to="/create-flashcard" className="btn btn-primary">
+            <button className="btn btn-primary" onClick={handleAddCard}>
               Add Card +
-            </Link>
+            </button>
             <a href="decks/deck-delete.html" className="btn btn-danger">
               Delete Deck
             </a>
@@ -53,10 +96,19 @@ export default function CardsView() {
           </div>
         </div>
 
+        {showForm && (
+          <CreateFlashcard
+            cards={cards}
+            setCards={setCards}
+            create={handleCreateFlashcard}
+            close={() => setShowForm(false)}
+            onFormSubmit={handleCloseForm}
+          />
+        )}
+
+
         <div className="container mt-5 justify-content-center d-flex flex-row flex-wrap">
-          {cardsData.map((card, index) => (
-            <DeckCard key={index} frontText={card.frontText} backText={card.backText} />
-          ))}
+          {cardsDeck}
         </div>
       </main>
 

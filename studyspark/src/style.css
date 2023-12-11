@@ -78,6 +78,17 @@ W3Schools.com: https://www.w3schools.com/howto/howto_css_flip_card.asp */
     transform: rotateY(180deg);
 }
 
+.delete-button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  .delete-button {
+    margin-top: 5px; 
+  }
+
 .nav-icon {
     height: 2rem;
 }
