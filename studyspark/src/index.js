@@ -18,7 +18,7 @@ const firebaseConfig = {
   };
   
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMJJ_WEPBr3N-d8za6wmzH-Je04E6QJdQ",

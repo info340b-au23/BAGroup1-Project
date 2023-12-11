@@ -8,23 +8,6 @@ import Login from "./Login";
 import Signup from "./Signup";
 import CardsView from "./CardsView";
 import StudyMode from "./StudyMode";
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from "firebase/database";
-
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDMJJ_WEPBr3N-d8za6wmzH-Je04E6QJdQ",
-  authDomain: "studyspark-97b92.firebaseapp.com",
-  projectId: "studyspark-97b92",
-  storageBucket: "studyspark-97b92.appspot.com",
-  messagingSenderId: "337626103078",
-  appId: "1:337626103078:web:f6504517c82ed9843355e7",
-  databaseURL: "https://studyspark-97b92-default-rtdb.firebaseio.com"
-};
-
-initializeApp(firebaseConfig);
-
 
 export default function App(props) {
   const [currentUser, setCurrentUser] = useState(null); // ! Need to set user functionality
