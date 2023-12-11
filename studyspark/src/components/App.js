@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Decks from "./DecksView";
@@ -10,23 +10,33 @@ import CardsView from "./CardsView";
 import StudyMode from "./StudyMode";
 
 export default function App(props) {
+  const [currentUser, setCurrentUser] = useState(null); // ! Need to set user functionality
   const location = useLocation();
 
   const isHomePage = location.pathname === "/";
 
-	return (
-		<div
-			className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}
-		>
-			<Navbar />
-			<Routes>
-				<Route index element={<HomePage />} />
-                <Route path="decks" element={<Decks decks={userDecks} />} />
-				<Route path="login" element={<Login />} />
-				<Route path="Signup" element={<Signup />} />
-				<Route path="/cards" element={<CardsView />} />
-				<Route path="/StudyMode" element={<StudyMode />} />
-			</Routes>
-		</div>
-	);
+  return (
+    <div className={`d-flex flex-column vh-100 ${isHomePage ? "title" : ""}`}>
+      <Navbar />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        {/* Protected Routes */}
+        <Route element={<ProtectedPage currentUser={currentUser} />}>
+          <Route path="decks" element={<Decks decks={userDecks} />} />
+          <Route path="cards" element={<CardsView />} />
+          <Route path="studymode" element={<StudyMode />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+}
+
+function ProtectedPage(props) {
+  if (props.currentUser === null) { // TODO change to .userId or whatever we use for users
+    return <Navigate to="/signup" />;
+  } else {
+    return <Outlet />;
+  }
 }
