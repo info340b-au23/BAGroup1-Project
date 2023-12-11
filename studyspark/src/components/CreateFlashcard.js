@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import '../style.css';
+import React, { useState } from "react";
+import "../style.css";
 
-export default function CreateFlashcard({ create }) { // pass in create flashcard callback function (in app js?) might change to just create here
-  const [frontValue, setFrontValue] = useState('');
-  const [backValue, setBackValue] = useState('');
+export default function CreateFlashcard({ create }) {
+  // pass in create flashcard callback function (in app js?) might change to just create here
+  const [frontValue, setFrontValue] = useState("");
+  const [backValue, setBackValue] = useState("");
 
   function addFlashcard() {
-    if (frontValue && backValue) { // not allowed to create empty flashcards?
+    if (frontValue && backValue) {
+      // not allowed to create empty flashcards?
       create({ front: frontValue, back: backValue });
-      setFrontValue('');
-      setBackValue('');
+      setFrontValue("");
+      setBackValue("");
     }
   }
 
