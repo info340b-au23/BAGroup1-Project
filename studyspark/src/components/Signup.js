@@ -1,12 +1,31 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, EmailAuthProvider, GoogleAuthProvider } from "firebase/auth"; // to integrate with firebase
-import { StyledFirebaseAuth } from "react-firebaseui"; // to integrate with firebase
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const signUpWithEmailAndPassword = async (email, password, formNavigate) => {
+  const auth = getAuth();
+
+  try {
+    // Check if the email is already registered
+    await createUserWithEmailAndPassword(auth, email, password);
+
+    console.log("Registration successful");
+    formNavigate("/decks");
+  } catch (error) {
+    console.error("Registration failed:", error.message);
+  }
+};
 
 export default function Signup() {
   const formNavigate = useNavigate();
-  function HandleSubmit() {
-    formNavigate("/decks");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const email = event.target.elements.email.value;
+    const password = event.target.elements.password.value;
+
+    signUpWithEmailAndPassword(email, password, formNavigate);
   }
 
   return (
@@ -25,7 +44,7 @@ export default function Signup() {
           :{" "}
         </h3>
       </div>
-      <form onSubmit={HandleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="col-form-label" htmlFor="email">
             Email Address:
@@ -34,18 +53,7 @@ export default function Signup() {
             type="email"
             className="form-control"
             placeholder="Enter Email"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label className="col-form-label" htmlFor="username">
-            Username:{" "}
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter username"
-            minLength="6"
+            name="email"
             required
           />
         </div>
@@ -54,9 +62,10 @@ export default function Signup() {
             Password:{" "}
           </label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             placeholder="Enter a password"
+            name="password"
             minLength="6"
             required
           />

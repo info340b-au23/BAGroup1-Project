@@ -1,105 +1,70 @@
-import React from "react";
-import DeckCard from "./DeckCard";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import StudyMode from "./StudyMode";
+import addFlashcard from "./CreateFlashcard";
+import DeckCard from "./DeckCard"; 
+import { getDatabase, ref } from 'firebase/database';
+
+// // ref firebase db
+// const db = getDatabase();
+// // const users = ref(db, "users") // reference to entire user data base
+// // const currUser = ref(db, "users/" + user) // reference to current user
+// // const deck = ref(db, "users/" + user + "/" + "decks") 
+
 
 export default function CardsView() {
-    return (
+  // Assume cardsData is an array containing user's saved cards
+  const [cardsData, setCardsData] = useState([]);
+
+  return (
+    <div>
+      <main className="container d-flex flex-column text-center flex-grow-1">
         <div>
-        <main class="container d-flex flex-column text-center flex-grow-1">
-        <div>
-            <br></br><br></br><br></br><br></br>
-            <h1 class="display-3 fw-bold">Your Deck</h1>
-            <div class="btn-container d-flex justify-content-center">
-                <a href="decks/deck-edit.html" class="btn btn-primary"
-                    >Edit Deck</a
-                >
-                <a href="study-set.html" class="btn btn-primary"
-                    >Study Mode</a
-                >
-                <Link to="/StudyMode" className="btn btn-primary">Study Mode</Link>
-                <a href="decks/deck-delete.html" class="btn btn-danger"
-                    >Delete Deck</a
-                >
-            </div>
-            <div class="container mt-3">
-                <form class="d-flex justify-content-center">
-                    <div class="col-auto">
-                        <input
-                            class="form-control"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                    </div>
-                    <button class="btn btn-primary mx-2" type="submit">
-                        Search
-                    </button>
-                </form>
-            </div>
+          <br></br><br></br><br></br><br></br>
+          <h1 className="display-3 fw-bold">Your Deck</h1>
+          <div className="btn-container d-flex justify-content-center">
+            <a href="decks/deck-edit.html" className="btn btn-primary">
+              Edit Deck
+            </a>
+            <a href="study-set.html" className="btn btn-primary">
+              Study Mode
+            </a>
+            <Link to="/create-flashcard" className="btn btn-primary">
+              Add Card +
+            </Link>
+            <a href="decks/deck-delete.html" className="btn btn-danger">
+              Delete Deck
+            </a>
+          </div>
+          <div className="container mt-3">
+            <form className="d-flex justify-content-center">
+              <div className="col-auto">
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </div>
+              <button className="btn btn-primary mx-2" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
         </div>
 
-        <div
-            class="container mt-5 justify-content-center d-flex flex-row flex-wrap"
-        >
-            <div class="vocab-card m-4">
-                <div class="vocab-card-inner d-flex">
-                    <div class="vocab-card-front fw-bold">Vocab Word</div>
-                    <div class="vocab-card-back">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Similique, quisquam.
-                    </div>
-                </div>
-            </div>
-
-            <div class="vocab-card m-4">
-                <div class="vocab-card-inner d-flex">
-                    <div class="vocab-card-front fw-bold">Vocab Word</div>
-                    <div class="vocab-card-back">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Similique, quisquam.
-                    </div>
-                </div>
-            </div>
-
-            <div class="vocab-card m-4">
-                <div class="vocab-card-inner d-flex">
-                    <div class="vocab-card-front fw-bold">Vocab Word</div>
-                    <div class="vocab-card-back">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Similique, quisquam.
-                    </div>
-                </div>
-            </div>
-
-            <div class="vocab-card m-4">
-                <div class="vocab-card-inner d-flex">
-                    <div class="vocab-card-front fw-bold">Vocab Word</div>
-                    <div class="vocab-card-back">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Similique, quisquam.
-                    </div>
-                </div>
-            </div>
-
-            <div class="vocab-card m-4">
-                <div class="vocab-card-inner d-flex">
-                    <div class="vocab-card-front fw-bold">Vocab Word</div>
-                    <div class="vocab-card-back">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Similique, quisquam.
-                    </div>
-                </div>
-            </div>
+        <div className="container mt-5 justify-content-center d-flex flex-row flex-wrap">
+          {cardsData.map((card, index) => (
+            <DeckCard key={index} frontText={card.frontText} backText={card.backText} />
+          ))}
         </div>
-    </main>
+      </main>
 
-    <footer>
-        <button type="button" class="btn btn-primary mt-5">
-            Toggle Theme
+      <footer>
+        <button type="button" className="btn btn-primary mt-5">
+          Toggle Theme
         </button>
-    </footer>
+      </footer>
     </div>
-    );
+  );
 }
