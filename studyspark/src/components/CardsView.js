@@ -1,5 +1,8 @@
 import React from "react";
 import DeckCard from "./DeckCard";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import StudyMode from "./StudyMode";
 
 export default function CardsView() {
     return (
@@ -15,6 +18,7 @@ export default function CardsView() {
                 <a href="study-set.html" class="btn btn-primary"
                     >Study Mode</a
                 >
+                <Link to="/StudyMode" className="btn btn-primary">Study Mode</Link>
                 <a href="decks/deck-delete.html" class="btn btn-danger"
                     >Delete Deck</a
                 >
