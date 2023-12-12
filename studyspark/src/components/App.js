@@ -21,6 +21,7 @@ export default function App(props) {
       if(user) {
         user.userName = user.displayName;
         user.userId = user.uid;
+        console.log(user)
         setCurrentUser(user);
       }
       else {
@@ -43,7 +44,7 @@ export default function App(props) {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="login" element={<Login currentUser={currentUser} loginCallback={loginUser}/>} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<Signup currentUser={currentUser} loginCallback={loginUser}/>} />
         {/* Protected Routes */}
         <Route element={<ProtectedPage currentUser={currentUser} />}>
           <Route path="decks" element={<Decks currentUser={currentUser} setCurrentUser={setCurrentUser} />} />

@@ -6,6 +6,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 export default function Navbar(props) {
   const currentUser = props.currentUser;
+  console.log(currentUser)
   const handleLogout = (event) => {
     signOut(getAuth());
   }
@@ -29,7 +30,6 @@ export default function Navbar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="navtoggle">
           <ul className="navbar-nav ms-auto align-items-center">
             {currentUser &&
