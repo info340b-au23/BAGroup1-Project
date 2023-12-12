@@ -6,6 +6,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 export default function Navbar(props) {
   const currentUser = props.currentUser;
+  console.log(currentUser)
   const handleLogout = (event) => {
     signOut(getAuth());
   }

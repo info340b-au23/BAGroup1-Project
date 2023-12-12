@@ -21,6 +21,7 @@ export default function App(props) {
       if(user) {
         user.userName = user.displayName;
         user.userId = user.uid;
+        console.log(user)
         setCurrentUser(user);
       }
       else {
