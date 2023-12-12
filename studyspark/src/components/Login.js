@@ -2,10 +2,20 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import { getAuth, EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
 export default function Login(props) {
   const currentUser = props.currentUser;
   const auth = getAuth();
+  
+  function writeUserData(currentUser) {
+    const db = getDatabase();
+    firebaseSet(ref(db, 'users/' + currentUser.userId), {
+      displayName: currentUser.displayName,
+      email: currentUser.email
+    });
+  }
+
   const firebaseUIConfig = {
     signInOptions: [
         GoogleAuthProvider.PROVIDER_ID, 
@@ -15,6 +25,7 @@ export default function Login(props) {
     callbacks: {signInSuccessWithAuthResult: () => {return false;}}
 }
   if (currentUser) {
+    writeUserData(currentUser);
     return <Navigate to="/decks" />
   }
 
