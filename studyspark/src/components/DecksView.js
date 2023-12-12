@@ -84,9 +84,19 @@ function CreateDeckForm({ decks, setDecks }) {
 
   function handleSubmit(e) {
     e.preventDefault(); // prevent default form submission which would refresh the page
+    const db = getDatabase();
+    const userDeckRef = ref(db, "users/")
     const newDeck = { title, description };
-    const updatedDecks = [...decks, newDeck];
-    setDecks(updatedDecks);
+    setDecks(...decks, newDeck);
+    // push(ref(db, "decks"), newDeck)
+    //   .then((newDeckRef) => {
+    //     // Update the local state with the new deck
+    //     setDecks([...decks, { ...newDeck, id: newDeckRef.key }]);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+    }
     // The following is for adding to noSQL database once we include firebase functionality!
     // fetch("../data/decks.json", {
     // 	method: "POST",
@@ -102,7 +112,6 @@ function CreateDeckForm({ decks, setDecks }) {
     // 	.catch((error) => {
     // 		console.error("Error:", error);
     // 	});
-  }
 
   return (
     <form onSubmit={handleSubmit} className="p-3 bg-dark rounded-4 mb-4">

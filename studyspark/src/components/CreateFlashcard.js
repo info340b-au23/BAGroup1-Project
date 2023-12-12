@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../style.css";
 
 export default function CreateFlashcard({ create, close, onFormSubmit }) {
   const [frontVal, setFrontVal] = useState("");
@@ -10,13 +9,13 @@ export default function CreateFlashcard({ create, close, onFormSubmit }) {
     create(frontVal, backVal);
     setFrontVal("");
     setBackVal("");
-    onFormSubmit(); // keep form from closing after creation 
+    onFormSubmit(); // keep form from closing after creation
   }
 
   return (
     <form onSubmit={handleSubmit} className="p-3 bg-dark rounded-4 mb-4">
       <h1>Create Flashcard</h1>
-      <div className="mb-3"> 
+      <div className="mb-3">
         <label className="form-label">Front Value:</label>
         <input
           type="text"
@@ -36,17 +35,21 @@ export default function CreateFlashcard({ create, close, onFormSubmit }) {
           onChange={(e) => setBackVal(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary"  >Create</button>
-      <button type="button" className="btn btn-secondary" onClick={() => {close()}}>Cancel</button>
+      <button type="submit" className="btn btn-primary">
+        Create
+      </button>
+      <button
+        type="button"
+        className="btn btn-secondary"
+        onClick={() => {
+          close();
+        }}
+      >
+        Cancel
+      </button>
     </form>
   );
-
 }
-
-
-
-
-
 
 /*
 export default function CreateFlashcard({ create }) {
