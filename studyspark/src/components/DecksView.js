@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DeckCard from "./DeckCard";
 import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import Button from "react-bootstrap/Button";
 
 export default function Decks(props) {
   const [showForm, setShowForm] = useState(false);
@@ -66,12 +67,12 @@ export default function Decks(props) {
       <div>
         <h1 className="display-3 fw-bold mt-5">Your Decks</h1>
       </div>
-      <button
-        className="btn btn-primary mb-4 w-25 mx-auto justify-content-center"
+      <Button
+        className="mb-4 w-25 mx-auto justify-content-center"
         onClick={handleEditDecks}
       >
         {showForm ? "Cancel" : "Edit Decks"}
-      </button>
+      </Button>
       <div className="container">
         <div className="row">
           {showForm ? (

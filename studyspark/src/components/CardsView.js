@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 import Flashcard from "./Flashcard";
 import CreateFlashcard from "./CreateFlashcard";
+import Button from "react-bootstrap/Button";
 
 export default function CardsView(props) {
   const [showForm, setShowForm] = useState(false);
@@ -111,12 +112,12 @@ export default function CardsView(props) {
         <div>
           <h1 className="display-3 fw-bold">Your Deck</h1>
           <div className="btn-container d-flex justify-content-center">
-            <button className="btn btn-primary mx-2" onClick={handleEdit}>
+            <Button className="mx-2" onClick={handleEdit}>
               {editMode ? "Cancel" : "Edit Deck"}
-            </button>
-            <button className="btn btn-primary mx-2" onClick={handleAddCard}>
+            </Button>
+            <Button className="mx-2" onClick={handleAddCard}>
               Add Card +
-            </button>
+            </Button>
           </div>
           <div className="container mt-3">
             <form className="d-flex justify-content-center">
