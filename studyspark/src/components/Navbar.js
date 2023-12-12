@@ -30,7 +30,6 @@ export default function Navbar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="navtoggle">
           <ul className="navbar-nav ms-auto align-items-center">
             {currentUser &&

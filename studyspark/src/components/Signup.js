@@ -30,7 +30,6 @@ export default function Signup(props) {
   
   function handleSubmit(event) {
     event.preventDefault();
-
     const signUpEmail = event.target.elements.email.value;
     const signUpPassword = event.target.elements.password.value;
     const signUpDisplayName = event.target.elements.flname.value;
