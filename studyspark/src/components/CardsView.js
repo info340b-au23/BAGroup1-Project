@@ -77,8 +77,12 @@ export default function CardsView(props) {
     setEditMode(!editMode);
   }
 
-  const cardsDeck = filteredCards
-    ? filteredCards.map((card, index) => (
+  const sortedCards = filteredCards
+    ? filteredCards.slice().sort((a, b) => a.frontVal.localeCompare(b.frontVal))
+    : null;
+
+  const cardsDeck = sortedCards
+    ? sortedCards.map((card, index) => (
         <Flashcard
           key={card.key}
           frontVal={card.frontVal}
@@ -107,13 +111,10 @@ export default function CardsView(props) {
         <div>
           <h1 className="display-3 fw-bold">Your Deck</h1>
           <div className="btn-container d-flex justify-content-center">
-            <button className="btn btn-primary" onClick={handleEdit}>
+            <button className="btn btn-primary mx-2" onClick={handleEdit}>
               {editMode ? "Cancel" : "Edit Deck"}
             </button>
-            <Link to="studymode" className="btn btn-primary">
-              Study Mode
-            </Link>
-            <button className="btn btn-primary" onClick={handleAddCard}>
+            <button className="btn btn-primary mx-2" onClick={handleAddCard}>
               Add Card +
             </button>
           </div>

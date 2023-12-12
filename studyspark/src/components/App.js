@@ -7,7 +7,6 @@ import Decks from "./DecksView";
 import Login from "./Login";
 import Signup from "./Signup";
 import CardsView from "./CardsView";
-import StudyMode from "./StudyMode";
 
 export default function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
@@ -49,7 +48,6 @@ export default function App(props) {
         <Route element={<ProtectedPage currentUser={currentUser} />}>
           <Route path="decks" element={<Decks currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
           <Route path="decks/:deckId" element={<CardsView currentUser={currentUser} />} />
-          <Route path="decks/:deckId/studymode" element={<StudyMode />} />
         </Route>
       </Routes>
     </div>
