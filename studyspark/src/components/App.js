@@ -47,7 +47,7 @@ export default function App(props) {
         {/* Protected Routes */}
         <Route element={<ProtectedPage currentUser={currentUser} />}>
           <Route path="decks" element={<Decks currentUser={currentUser} />} />
-          <Route path="cards" element={<CardsView />} />
+          <Route path="decks/:deckId" element={<CardsView currentUser={currentUser} />} />
           <Route path="studymode" element={<StudyMode />} />
         </Route>
       </Routes>
