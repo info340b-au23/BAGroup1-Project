@@ -44,7 +44,7 @@ export default function App(props) {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="login" element={<Login currentUser={currentUser} loginCallback={loginUser}/>} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<Signup currentUser={currentUser} loginCallback={loginUser}/>} />
         {/* Protected Routes */}
         <Route element={<ProtectedPage currentUser={currentUser} />}>
           <Route path="decks" element={<Decks decks={userDecks} />} />
@@ -58,7 +58,7 @@ export default function App(props) {
 
 function ProtectedPage(props) {
   if (props.currentUser === null) { // TODO change to .userId or whatever we use for users
-    return <Navigate to="/login" />;
+    return <Navigate to="/Signup" />;
   } else {
     return <Outlet />;
   }

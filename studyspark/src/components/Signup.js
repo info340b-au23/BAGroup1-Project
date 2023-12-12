@@ -1,31 +1,40 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
-const signUpWithEmailAndPassword = async (email, password, formNavigate) => {
-  const auth = getAuth();
-
-  try {
-    // Check if the email is already registered
-    await createUserWithEmailAndPassword(auth, email, password);
-
-    console.log("Registration successful");
-    formNavigate("/decks");
-  } catch (error) {
-    console.error("Registration failed:", error.message);
-  }
-};
-
-export default function Signup() {
+export default function Signup(props) {
   const formNavigate = useNavigate();
+  let currentUser = props.currentUser;
 
+  function writeUserData(currentUser) {
+    const db = getDatabase();
+    firebaseSet(ref(db, 'users/' + currentUser.uid), {
+      displayName: currentUser.displayName,
+      email: currentUser.email
+    });
+  }
+  
+  const signUpWithEmailAndPassword = async (email, password, displayname, formNavigate) => {
+    const auth = getAuth();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then(function(user){currentUser = user.user});
+      console.log("Registration successful");
+      currentUser.displayName = displayname
+      writeUserData(currentUser);
+      formNavigate("/decks");
+    } catch (error) {
+      console.error("Registration failed:", error.message);
+    }
+  };
+  
   function handleSubmit(event) {
     event.preventDefault();
 
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
-
-    signUpWithEmailAndPassword(email, password, formNavigate);
+    const signUpEmail = event.target.elements.email.value;
+    const signUpPassword = event.target.elements.password.value;
+    const signUpDisplayName = event.target.elements.flname.value;
+    signUpWithEmailAndPassword(signUpEmail, signUpPassword, signUpDisplayName, formNavigate);
   }
 
   return (
@@ -52,8 +61,20 @@ export default function Signup() {
           <input
             type="email"
             className="form-control"
-            placeholder="Enter Email"
+            placeholder="Enter an email"
             name="email"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label className="col-form-label" htmlFor="name">
+            First and Last Name: 
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter a name"
+            name="flname"
             required
           />
         </div>

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DeckCard from "./DeckCard";
-import {
-  getDatabase,
-  ref,
-  set as firebaseSet,
-  onValue,
-} from "firebase/database";
+import { getDatabase, ref, set as firebaseSet, onValue, } from "firebase/database";
 
 export default function Decks(props) {
   const [showForm, setShowForm] = useState(false);
