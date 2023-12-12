@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 import Flashcard from "./Flashcard";
 import CreateFlashcard from "./CreateFlashcard";
@@ -9,10 +9,14 @@ export default function CardsView(props) {
   const [cards, setCards] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const { deckId } = useParams();
+  const [filteredCards, setFilteredCards] = useState(null);
 
   useEffect(() => {
     const db = getDatabase();
-    const cardRef = ref(db, `users/${props.currentUser.uid}/decks/${deckId}/cards`);
+    const cardRef = ref(
+      db,
+      `users/${props.currentUser.uid}/decks/${deckId}/cards`
+    );
     const offFunction = onValue(cardRef, (snapshot) => {
       const valueObj = snapshot.val();
       if (valueObj !== null) {
@@ -23,8 +27,10 @@ export default function CardsView(props) {
           return cardObj;
         });
         setCards(objArray);
+        setFilteredCards(objArray);
       } else {
         setCards(null);
+        setFilteredCards(null);
       }
     });
 
@@ -43,7 +49,10 @@ export default function CardsView(props) {
   function handleCreateFlashcard(front, back) {
     const newCard = { frontVal: front, backVal: back };
     const db = getDatabase();
-    const deckCardRef = ref(db, `users/${props.currentUser.uid}/decks/${deckId}/cards`);
+    const deckCardRef = ref(
+      db,
+      `users/${props.currentUser.uid}/decks/${deckId}/cards`
+    );
     push(deckCardRef, newCard).catch((error) => {
       console.error("Error:", error);
     });
@@ -51,11 +60,13 @@ export default function CardsView(props) {
 
   function handleRemoveCard(cardKey) {
     const db = getDatabase();
-    const deckCardRef = ref(db, `users/${props.currentUser.uid}/decks/${deckId}/cards/${cardKey}`);
-    remove(deckCardRef)
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const deckCardRef = ref(
+      db,
+      `users/${props.currentUser.uid}/decks/${deckId}/cards/${cardKey}`
+    );
+    remove(deckCardRef).catch((error) => {
+      console.error("Error:", error);
+    });
   }
 
   function handleCloseForm() {
@@ -66,18 +77,29 @@ export default function CardsView(props) {
     setEditMode(!editMode);
   }
 
-  const cardsDeck = cards ? (
-    cards.map((card, index) => (
-      <Flashcard
-        key={card.key}
-        frontVal={card.frontVal}
-        backVal={card.backVal}
-        showForm={showForm}
-        handleRemoveCard={() => handleRemoveCard(card.key)} // pass in cardkey to remove specific card
-        editable={editMode}
-      />
-    ))
-  ) : null;
+  const cardsDeck = filteredCards
+    ? filteredCards.map((card, index) => (
+        <Flashcard
+          key={card.key}
+          frontVal={card.frontVal}
+          backVal={card.backVal}
+          showForm={showForm}
+          handleRemoveCard={() => handleRemoveCard(card.key)}
+          editable={editMode}
+        />
+      ))
+    : null;
+
+  function handleSearch(e) {
+    e.preventDefault();
+    const search = e.target.value;
+    if (cards != null && search != null) {
+      const filteredCards = cards.filter((card) =>
+        card.frontVal.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredCards(filteredCards); // Update filtered cards state
+    }
+  }
 
   return (
     <div className="scroll">
@@ -88,9 +110,9 @@ export default function CardsView(props) {
             <button className="btn btn-primary" onClick={handleEdit}>
               {editMode ? "Cancel" : "Edit Deck"}
             </button>
-            <a href="study-set.html" className="btn btn-primary">
+            <Link to="studymode" className="btn btn-primary">
               Study Mode
-            </a>
+            </Link>
             <button className="btn btn-primary" onClick={handleAddCard}>
               Add Card +
             </button>
@@ -103,11 +125,9 @@ export default function CardsView(props) {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={(e) => handleSearch(e)}
                 />
               </div>
-              <button className="btn btn-primary mx-2" type="submit">
-                Search
-              </button>
             </form>
           </div>
         </div>
@@ -126,12 +146,6 @@ export default function CardsView(props) {
           {cardsDeck}
         </div>
       </main>
-
-      <footer>
-        <button type="button" className="btn btn-primary mt-5">
-          Toggle Theme
-        </button>
-      </footer>
     </div>
   );
 }
