@@ -52,7 +52,6 @@ export default function Decks(props) {
       });
   }
 
-  // TODO make link of card route to new page, then in deck page use useParams() to retrieve the data from firebase
   let deckCards = null;
   if (decks !== undefined && decks !== null) {
     deckCards = decks.map((deck, index) => {
