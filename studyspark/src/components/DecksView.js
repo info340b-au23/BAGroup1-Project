@@ -3,25 +3,31 @@ import DeckCard from "./DeckCard";
 import {
   getDatabase,
   ref,
-  set as firebaseSet,
   onValue,
+  push,
+  remove,
 } from "firebase/database";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function Decks(props) {
   const [showForm, setShowForm] = useState(false);
-  const [decks, setDecks] = useState(props.decks);
+  const [decks, setDecks] = useState(null);
   useEffect(() => {
     const db = getDatabase();
-    const decksRef = ref(db, "decks"); // ! Need to route to actual ref!!!
+    const decksRef = ref(db, `users/${props.currentUser.uid}/decks`);
     const offFunction = onValue(decksRef, (snapshot) => {
       const valueObj = snapshot.val();
-      const objKeys = Object.keys(valueObj);
-      const objArray = objKeys.map((keyString) => {
-        const deckObj = valueObj[keyString];
-        deckObj.key = keyString;
-        return deckObj;
-      });
-      setDecks(objArray);
+      if (valueObj !== null) {
+        const objKeys = Object.keys(valueObj);
+        const objArray = objKeys.map((keyString) => {
+          const deckObj = valueObj[keyString];
+          deckObj.key = keyString;
+          return deckObj;
+        });
+        setDecks(objArray);
+      } else {
+        setDecks(null);
+      }
     });
 
     function cleanup() {
@@ -36,24 +42,32 @@ export default function Decks(props) {
     setShowForm(!showForm);
   }
 
-  // TODO make link of card route to new page, then in deck page use useParams() to retrieve the data from firebase
-  const deckCards = decks.map((deck, index) => {
-    function handleRemoveDeck() {
-      const updatedDecks = [...decks];
-      updatedDecks.splice(index, 1);
-      setDecks(updatedDecks);
-    }
+  function handleRemoveDeck(deckKey) {
+    const db = getDatabase();
+    const deckRef = ref(db, `users/${props.currentUser.uid}/decks/${deckKey}`);
+    console.log("DECK REMOVED");
+    remove(deckRef) // Set the deck reference to null to remove it
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
-    return (
-      <DeckCard
-        key={index}
-        title={deck.title}
-        description={deck.description}
-        showForm={showForm}
-        handleRemoveDeck={handleRemoveDeck}
-      />
-    );
-  });
+  // TODO make link of card route to new page, then in deck page use useParams() to retrieve the data from firebase
+  let deckCards = null;
+  if (decks !== undefined && decks !== null) {
+    deckCards = decks.map((deck, index) => {
+      return (
+        <DeckCard
+          key={deck.key}
+          title={deck.title}
+          description={deck.description}
+          showForm={showForm}
+          deckKey={deck.key}
+          handleRemoveDeck={handleRemoveDeck}
+        />
+      );
+    });
+  }
 
   return (
     <main className="container d-flex flex-column text-center flex-grow-1 mt-5 scroll">
@@ -69,49 +83,32 @@ export default function Decks(props) {
       <div className="container">
         <div className="row">
           {showForm ? (
-            <CreateDeckForm decks={decks} setDecks={setDecks} />
+            <CreateDeckForm
+              decks={decks}
+              setDecks={setDecks}
+              currentUser={props.currentUser}
+            />
           ) : null}
-          {deckCards}
+          {deckCards && deckCards.length > 0 ? deckCards : null}
         </div>
       </div>
     </main>
   );
 }
 
-function CreateDeckForm({ decks, setDecks }) {
+function CreateDeckForm({ decks, setDecks, currentUser }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   function handleSubmit(e) {
-    e.preventDefault(); // prevent default form submission which would refresh the page
+    e.preventDefault();
     const db = getDatabase();
-    const userDeckRef = ref(db, "users/")
-    const newDeck = { title, description };
-    setDecks(...decks, newDeck);
-    // push(ref(db, "decks"), newDeck)
-    //   .then((newDeckRef) => {
-    //     // Update the local state with the new deck
-    //     setDecks([...decks, { ...newDeck, id: newDeckRef.key }]);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
-    }
-    // The following is for adding to noSQL database once we include firebase functionality!
-    // fetch("../data/decks.json", {
-    // 	method: "POST",
-    // 	headers: {
-    // 		"Content-Type": "application/json",
-    // 	},
-    // 	body: JSON.stringify(newDeck),
-    // })
-    // 	.then((response) => {
-    // 		console.log(response);
-    // 		return response.json();
-    // 	})
-    // 	.catch((error) => {
-    // 		console.error("Error:", error);
-    // 	});
+    const userDeckRef = ref(db, `users/${currentUser.uid}/decks`);
+    const deckInfo = { title: title, description: description };
+    push(userDeckRef, deckInfo).catch((error) => {
+      console.error("Error:", error);
+    });
+  }
 
   return (
     <form onSubmit={handleSubmit} className="p-3 bg-dark rounded-4 mb-4">

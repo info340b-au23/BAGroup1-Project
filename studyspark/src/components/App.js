@@ -4,14 +4,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Decks from "./DecksView";
-import userDecks from "../data/decks.json";
 import Login from "./Login";
 import Signup from "./Signup";
 import CardsView from "./CardsView";
 import StudyMode from "./StudyMode";
 
 export default function App(props) {
-  const [currentUser, setCurrentUser] = useState(null); // ! Need to set user functionality
+  const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const navigateTo = useNavigate();
@@ -47,7 +46,7 @@ export default function App(props) {
         <Route path="signup" element={<Signup />} />
         {/* Protected Routes */}
         <Route element={<ProtectedPage currentUser={currentUser} />}>
-          <Route path="decks" element={<Decks decks={userDecks} />} />
+          <Route path="decks" element={<Decks currentUser={currentUser} />} />
           <Route path="cards" element={<CardsView />} />
           <Route path="studymode" element={<StudyMode />} />
         </Route>
@@ -57,7 +56,7 @@ export default function App(props) {
 }
 
 function ProtectedPage(props) {
-  if (props.currentUser === null) { // TODO change to .userId or whatever we use for users
+  if (props.currentUser === null) {
     return <Navigate to="/login" />;
   } else {
     return <Outlet />;
